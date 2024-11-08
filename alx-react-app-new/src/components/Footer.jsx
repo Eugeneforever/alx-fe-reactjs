@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <footer>
-            <p>© 2023 City Lovers</p>
+            <p style={{letterSpacing: '7px', fontWeight: 'bold', fontStyle: 'Italic' }}>© <span style={{color: 'greenyellow', fontWeight: 'bold',}}>2023</span> City Lovers</p>
         </footer> 
     )
 }
