@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
 import useRecipeStore from './recipeStore';
 
 const RecommendationsList = () => {
-  const recommendations = useRecipeStore((state) => state.recommendations);
-  const generateRecommendations = useRecipeStore((state) => state.generateRecommendations);
+  const { recommendations, generateRecommendations } = useRecipeStore(
+    (state) => ({
+      recommendations: state.recommendations,
+      generateRecommendations: state.generateRecommendations,
+    })
+  );
 
-  useEffect(() => {
+  // Generate recommendations on component load
+  React.useEffect(() => {
     generateRecommendations();
   }, [generateRecommendations]);
 
@@ -20,7 +24,7 @@ const RecommendationsList = () => {
           </div>
         ))
       ) : (
-        <p>No recommendations available.</p>
+        <p>No recommendations available. Add some favorites!</p>
       )}
     </div>
   );

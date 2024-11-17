@@ -1,38 +1,20 @@
-// import React from 'react';
-import { Link } from 'react-router-dom';
-import useRecipeStore from './recipeStore';
-import DeleteRecipeButton from './DeleteRecipeButton';
-const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
-  const favorites = useRecipeStore((state) => state.favorites);
-  const addFavorite = useRecipeStore((state) => state.addFavorite);
-  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+ // RecipeList component
+ import useRecipeStore from "./recipeStore";
+ import { Link } from "react-router-dom";
 
-  const toggleFavorite = (id) => {
-    if (favorites.includes(id)) {
-      removeFavorite(id);
-    } else {
-      addFavorite(id);
-    }
-  };
+ const RecipeList = () => {
+   const recipes = useRecipeStore(state => state.filteredRecipes);
 
-  return (
-    <div>
-      {filteredRecipes.map((recipe) => (
-        <div key={recipe.id}>
-          <Link to={`/recipe/${recipe.id}`}>
-            <h3>{recipe.title}</h3>
-          </Link>
-          <p>{recipe.description}</p>
-          <button onClick={() => toggleFavorite(recipe.id)}>
-            {favorites.includes(recipe.id) ? 'Remove from Favorites' : 'Add to Favorites'}
-          </button>
-          
-        </div>
-      ))}
-      {/* <DeleteRecipeButton /> */}
-    </div>
-  );
-};
-
-export default RecipeList;
+   return (
+     <div>
+       {recipes.map(recipe => (
+         <div key={recipe.id}>
+           <h3>{recipe.title}</h3>
+           <p>{recipe.description}</p>
+           <Link to={`/recipes/${recipe.id}`}>View Details</Link>
+         </div>
+       ))}
+     </div>
+   );
+ };
+ export default RecipeList;
