@@ -10,13 +10,13 @@ function App() {
  
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-      <PostsComponent />
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
       <h1>Welcome to my React</h1>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+        <PostsComponent />
+      </QueryClientProvider>
     </>
   )
 }
