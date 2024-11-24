@@ -50,6 +50,8 @@ function RegistrationForm() {
     password: '',
   });
 
+  const { username, email, password } = formData; // Destructure state for direct usage
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -63,25 +65,25 @@ function RegistrationForm() {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     let valid = true;
     const newErrors = {};
 
     // Validate username
-    if (!formData.username.trim()) {
+    if (!username.trim()) {
       newErrors.username = 'Username is required.';
       valid = false;
     }
 
     // Validate email
-    if (!formData.email.trim()) {
+    if (!email.trim()) {
       newErrors.email = 'Email is required.';
       valid = false;
     }
 
     // Validate password
-    if (!formData.password.trim()) {
+    if (!password.trim()) {
       newErrors.password = 'Password is required.';
       valid = false;
     }
@@ -90,13 +92,13 @@ function RegistrationForm() {
 
     if (valid) {
       alert('Form submitted successfully!');
-      console.log(formData); // Perform any additional actions like sending data to a server
+      console.log({ username, email, password }); // Perform any additional actions like sending data to a server
     }
   };
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Form Validation</h1>
+      <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label><br />
@@ -104,7 +106,7 @@ function RegistrationForm() {
             type="text"
             id="username"
             name="username"
-            value={formData.username}
+            value={username}
             onChange={handleChange}
           />
           {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
@@ -116,7 +118,7 @@ function RegistrationForm() {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={email}
             onChange={handleChange}
           />
           {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
@@ -128,7 +130,7 @@ function RegistrationForm() {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
+            value={password}
             onChange={handleChange}
           />
           {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
