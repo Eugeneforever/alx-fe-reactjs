@@ -71,19 +71,19 @@ function RegistrationForm() {
     const newErrors = {};
 
     // Validate username
-    if (!username.trim()) {
+    if (!username) {
       newErrors.username = 'Username is required.';
       valid = false;
     }
 
     // Validate email
-    if (!email.trim()) {
+    if (!email) {
       newErrors.email = 'Email is required.';
       valid = false;
     }
 
     // Validate password
-    if (!password.trim()) {
+    if (!password) {
       newErrors.password = 'Password is required.';
       valid = false;
     }
