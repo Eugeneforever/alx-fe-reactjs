@@ -1,36 +1,145 @@
-import React from 'react'
-import { useState } from 'react'
+// import React from 'react'
+// import { useState } from 'react'
 
 
-const RegistrationForm = () => {
+// const RegistrationForm = () => {
 
-    const [formData, setFormData] = useState({name: '', email: '', password: ''})
-    const handleSubmit = (event) => {
-        event.preventDefault();
+//     const [formData, setFormData] = useState({name: '', email: '', password: ''})
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//     }
+//     const handleChange = (event) => {
+//         const { name, value} =event.target;
+//         setFormData(prevState => ({...prevState, [name]: value}))
+//     }
+
+
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <label htmlFor="name">Username
+//                 <input type="name" name="name" value={formData.name} onChange={handleChange}/>
+//             </label>
+//             <label htmlFor="email">Email
+//                 <input type="email" name="email" value={formData.email} onChange={handleChange}/>
+//             </label>
+//             <label htmlFor="password" value={formData.password} onChange={handleChange}>Password
+//                 <input type="password" name="password" />
+//             </label>
+
+//             <button type='submit'>Submit</button>
+
+//         </form>
+
+//     )
+// }
+
+// export default RegistrationForm;
+
+import React, { useState } from 'react';
+
+function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    setErrors({
+      ...errors,
+      [name]: '', // Clear error for the current field on change
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let valid = true;
+    const newErrors = {};
+
+    // Validate username
+    if (!formData.username.trim()) {
+      newErrors.username = 'Username is required.';
+      valid = false;
     }
-    const handleChange = (event) => {
-        const { name, value} =event.target;
-        setFormData(prevState => ({...prevState, [name]: value}))
+
+    // Validate email
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required.';
+      valid = false;
     }
 
+    // Validate password
+    if (!formData.password.trim()) {
+      newErrors.password = 'Password is required.';
+      valid = false;
+    }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Username
-                <input type="name" name="name" value={formData.name} onChange={handleChange}/>
-            </label>
-            <label htmlFor="email">Email
-                <input type="email" name="email" value={formData.email} onChange={handleChange}/>
-            </label>
-            <label htmlFor="password" value={formData.password} onChange={handleChange}>Password
-                <input type="password" name="password" />
-            </label>
+    setErrors(newErrors);
 
-            <button type='submit'>Submit</button>
+    if (valid) {
+      alert('Form submitted successfully!');
+      console.log(formData); // Perform any additional actions like sending data to a server
+    }
+  };
 
-        </form>
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Form Validation</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label><br />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
+        </div>
 
-    )
+        <div>
+          <label htmlFor="email">Email:</label><br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="password">Password:</label><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
+        </div>
+
+        <button type="submit" style={{ marginTop: '10px' }}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default RegistrationForm;

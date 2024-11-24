@@ -8,10 +8,10 @@ const Profile = () => {
     <div>
       <h1>Profile Page</h1>
       <nav>
-        <Link to="details">Details</Link> | <Link to="settings">Settings</Link>
+        <Link to="ProfileDetails">Details</Link> | <Link to="ProfileSettings">Settings</Link>
       </nav>
       <Routes>
-        <Route path="details" element={<ProfileDetails />} />
+        <Route path="/" element={<ProfileDetails />} />
         <Route path="settings" element={<ProfileSettings />} />
       </Routes>
     </div>

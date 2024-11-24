@@ -11,8 +11,8 @@ function App() {
 
   return (
     <>
-    {/* <RegistrationForm /> */}
-    <formikForm />
+    <RegistrationForm />
+    {/* <formikForm /> */}
      <h1>Welcome to Vite</h1>
       <p>
         Click on the Vite and React logos to learn more
