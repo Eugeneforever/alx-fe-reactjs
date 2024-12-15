@@ -1,18 +1,21 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './App.css'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Search from './components/Search';
 
-function App() {
-  
+const App = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen pt-10">
+      <Header />
+      <main className="flex-grow flex items-center justify-center bg-gray-100 px-4">
+        <div className="w-full max-w-4xl p-6 bg-white shadow-md rounded-lg">
+          <Search />
+        </div>
+      </main>
       
-      <h1>Vite + React</h1>
-      
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <Footer />
+    </div>
+  );
+};
+
 
 export default App
